@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 let items = [];
+let workItems = [];
 
 app.set('view engine', 'ejs'); //set the ejs engine
 
@@ -22,19 +23,35 @@ app.get('/', function(req, res) { //getting request from client
 
   const day = today.toLocaleDateString("en-US", options);
 
-  res.render("list", {kindOfDay: day, newListItems: items}); //render response to client
+  res.render("list", {listTitle: day, newListItems: items}); //render response to client
 });
 
 app.post("/", function(req, res) { //on post action what happens
   const item = req.body.newItem;
+  console.log(req.body);
+  if (req.body.list === "Work List") {
+    workItems.push(item);
 
-  items.push(item);
+    res.redirect("/work");
+  } else {
+    items.push(item);
 
-  res.redirect("/"); //redirect to the home page and execute the get again
-})
+    res.redirect("/"); //redirect to the home page and execute the get again
+  }
+
+});
+
+app.get("/work", function(req, res) {
+  res.render("list", {listTitle: "Work List", newListItems: workItems});
+});
 
 
+app.post("/work", function(req, res) {
+  let item = req.body.newItem;
+  workItems.push(item);
 
+  res.redirect("/work");
+});
 
 
 app.listen(3000, function() {
