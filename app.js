@@ -6,8 +6,8 @@ const date = require(__dirname + "/date.js");
 
 const app = express();
 
-let items = [];
-let workItems = [];
+const items = [];
+const workItems = [];
 
 app.set('view engine', 'ejs'); //set the ejs engine
 

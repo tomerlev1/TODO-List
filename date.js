@@ -1,5 +1,5 @@
 
-function getDate() {
+exports.getDate = function() {
   const today = new Date();
 
   const options = {
@@ -10,5 +10,3 @@ function getDate() {
 
   return today.toLocaleDateString("en-US", options);
 };
-
-module.exports.getDate = getDate;
