@@ -8,9 +8,7 @@ function getDate() {
     month: "long",
   };
 
-  const day = today.toLocaleDateString("en-US", options);
+  return today.toLocaleDateString("en-US", options);
+};
 
-  return day;
-}
-
-module.exports = getDate;
+module.exports.getDate = getDate;

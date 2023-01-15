@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: true})); //use body-parser model
 app.use(express.static("public"));
 
 app.get('/', function(req, res) { //getting request from client
-  const day = date();
+  const day = date.getDate();
 
   res.render("list", {listTitle: day, newListItems: items}); //render response to client
 });
